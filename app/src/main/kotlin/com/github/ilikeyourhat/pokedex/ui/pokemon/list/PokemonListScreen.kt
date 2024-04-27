@@ -68,7 +68,7 @@ fun PokemonList(content: PokemonListScreenState.Content) {
 fun PokemonListScreenPreview_full() {
     PokemonListScreen(
         PokemonListScreenState.Content(
-            pokemons = listOf("Bulbasaur, Pikachu")
+            pokemons = listOf("Bulbasaur", "Pikachu")
         )
     )
 }
