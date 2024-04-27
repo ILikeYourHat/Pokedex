@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 android {
@@ -30,6 +31,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -50,6 +52,14 @@ android {
 }
 
 dependencies {
+    coreLibraryDesugaring(libs.desugaring)
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization)
+
+    implementation(libs.okhttp)
+    implementation(libs.kotlinx.serialization.json)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

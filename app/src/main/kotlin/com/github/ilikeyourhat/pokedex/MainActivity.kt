@@ -10,7 +10,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.github.ilikeyourhat.pokedex.network.PokemonService
 import com.github.ilikeyourhat.pokedex.ui.theme.PokedexTheme
+import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
+import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
+import retrofit2.create
+
 
 class MainActivity : ComponentActivity() {
 
@@ -26,6 +34,25 @@ class MainActivity : ComponentActivity() {
                     Greeting("Android")
                 }
             }
+        }
+    }
+
+    private val json = Json {
+        ignoreUnknownKeys = true
+    }
+    override fun onResume() {
+        super.onResume()
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://pokeapi.co/api/v2/")
+            .addConverterFactory(
+                json.asConverterFactory(
+                    "application/json; charset=UTF8".toMediaType()))
+            .build()
+
+        val service = retrofit.create<PokemonService>()
+
+        runBlocking {
+            println(service.getPokedexData("kanto"))
         }
     }
 }
