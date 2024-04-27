@@ -4,21 +4,21 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Pokedex(
+data class PokedexJson(
     val name: String,
     @SerialName("pokemon_entries")
-    val pokemonEntries: List<PokemonEntry>
+    val pokemonEntries: List<PokemonEntryJson>
 )
 
 @Serializable
-data class PokemonEntry(
+data class PokemonEntryJson(
     @SerialName("entry_number")
     val entryNumber: Int,
     @SerialName("pokemon_species")
-    val pokemonSpecies: PokemonSpecies
+    val pokemonSpecies: PokemonSpeciesJson
 )
 
 @Serializable
-data class PokemonSpecies(
+data class PokemonSpeciesJson(
     val name: String
 )

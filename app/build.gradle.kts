@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinxSerialization)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.junit5)
 }
 
 android {
@@ -77,7 +78,13 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
+
+    testImplementation(libs.junit5)
+    testImplementation(libs.junit5.params)
+    testRuntimeOnly(libs.junit5.engine)
+    testImplementation(libs.kotest)
+    testImplementation(libs.mockk)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

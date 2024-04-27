@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.github.ilikeyourhat.pokedex.domain.model.Pokemon
 import com.github.ilikeyourhat.pokedex.ui.theme.PokedexTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,7 +55,7 @@ fun EmptyPokemonList() {
 fun PokemonList(content: PokemonListScreenState.Content) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(content.pokemons) { pokemon ->
-            Text(text = pokemon, modifier = Modifier.fillParentMaxWidth())
+            Text(text = pokemon.name, modifier = Modifier.fillParentMaxWidth())
         }
     }
 }
@@ -68,7 +69,10 @@ fun PokemonList(content: PokemonListScreenState.Content) {
 fun PokemonListScreenPreview_full() {
     PokemonListScreen(
         PokemonListScreenState.Content(
-            pokemons = listOf("Bulbasaur", "Pikachu")
+            pokemons = listOf(
+                Pokemon(1, "Bulbasaur"),
+                Pokemon(7, "Pikachu")
+            )
         )
     )
 }
